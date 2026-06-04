@@ -1,0 +1,190 @@
+/* Custom CSS variables and overrides for Sinh Viên Quán */
+
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Material symbols setup */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+
+/* Scrollbar styling for native feel inside the app container */
+main::-webkit-scrollbar {
+    width: 4px;
+}
+main::-webkit-scrollbar-track {
+    background: transparent;
+}
+main::-webkit-scrollbar-thumb {
+    background: #e0c0b3;
+    border-radius: 4px;
+}
+.dark main::-webkit-scrollbar-thumb {
+    background: #594238;
+}
+
+/* Premium voucher dashed cut style */
+.voucher-cutout {
+    position: relative;
+    background-image: radial-gradient(circle at 0 50%, transparent 10px, currentColor 11px),
+                      radial-gradient(circle at 100% 50%, transparent 10px, currentColor 11px);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.dotted-divider {
+    background-image: linear-gradient(to bottom, #8c7167 50%, rgba(255, 255, 255, 0) 0%);
+    background-position: right;
+    background-size: 2px 10px;
+    background-repeat: repeat-y;
+}
+
+/* Glow effects for active elements */
+.decision-engine-glow {
+    box-shadow: 0 10px 40px -10px rgba(165, 60, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark .decision-engine-glow {
+    box-shadow: 0 10px 40px -10px rgba(244, 107, 42, 0.1);
+}
+
+.decision-engine-glow:hover {
+    box-shadow: 0 15px 50px -5px rgba(165, 60, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Bottom Safe spacing */
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Micro-interaction scale active states */
+.squishy-button {
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.squishy-button:active {
+    transform: scale(0.96);
+}
+
+/* Slot Machine Animation styling for recommendation engine */
+.slot-machine-container {
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+}
+
+.slot-machine-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.1s linear;
+}
+
+.slot-item {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Toast animations */
+@keyframes slideUpFade {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDownFade {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+.toast-enter {
+    animation: slideUpFade 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.toast-exit {
+    animation: slideDownFade 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Pulse badge */
+.badge-pulse {
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(225, 29, 72, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(225, 29, 72, 0);
+    }
+}
+
+/* Screen 11, 12, 13 custom additions */
+.bottom-sheet-shadow {
+    box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.1), 0 -8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.voucher-cutout-l {
+    mask-image: radial-gradient(circle at 0 50%, transparent 10px, black 11px);
+    -webkit-mask-image: radial-gradient(circle at 0 50%, transparent 10px, black 11px);
+}
+
+.voucher-cutout-r {
+    mask-image: radial-gradient(circle at 100% 50%, transparent 10px, black 11px);
+    -webkit-mask-image: radial-gradient(circle at 100% 50%, transparent 10px, black 11px);
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.bottom-sheet-animate {
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.overlay-animate {
+    animation: fadeIn 0.25s ease-out forwards;
+}
+

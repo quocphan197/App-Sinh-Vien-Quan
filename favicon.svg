@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sinh Vi�n Qu�n">
+  <rect width="64" height="64" rx="14" fill="#a53c00"/>
+  <path fill="#fff8f6" d="M18 22h28v4H18zm0 8h20v4H18zm0 8h24v4H18z"/>
+  <circle cx="46" cy="42" r="10" fill="#f46b2a"/>
+  <path fill="#fff" d="M42 42h8v2h-8zm0 4h6v2h-6z"/>
+</svg>

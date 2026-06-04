@@ -1,0 +1,23 @@
+{
+  "name": "sinh-vien-quan",
+  "version": "1.0.0",
+  "description": "Sinh Viên Quán — SPA đặt món mobile-first cho sinh viên (menu, voucher, giỏ hàng, đơn hàng)",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "vietnamese",
+    "food-ordering",
+    "spa",
+    "tailwind",
+    "student"
+  ],
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "start": "npm run dev",
+    "preview": "npm run dev",
+    "validate": "node scripts/validate.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+    <title>Sinh Viên Quán - Tiết kiệm & Năng động</title>
+    <meta name="description" content="Đặt món nhanh cho sinh viên — menu combo, voucher, giỏ hàng và theo dõi đơn tại Sinh Viên Quán.">
+    <meta name="theme-color" content="#a53c00">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Be+Vietnam+Pro:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/app.css">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#f6ddd5",
+                        "surface": "#fff8f6",
+                        "surface-container-high": "#fce3da",
+                        "surface-bright": "#fff8f6",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#eee0d2",
+                        "primary": "#a53c00",
+                        "primary-container": "#f46b2a",
+                        "tertiary-fixed-dim": "#80d0ff",
+                        "secondary-fixed-dim": "#d1c4b7",
+                        "on-surface-variant": "#594238",
+                        "error-container": "#ffdad6",
+                        "status-yellow": "#FBBF24",
+                        "inverse-on-surface": "#ffede7",
+                        "on-primary-container": "#541b00",
+                        "on-tertiary-fixed": "#001e2d",
+                        "on-primary-fixed-variant": "#7e2c00",
+                        "on-primary-fixed": "#370e00",
+                        "dark-navy": "#18233A",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004c6a",
+                        "surface-container": "#ffe9e2",
+                        "status-red": "#E11D48",
+                        "primary-fixed": "#ffdbce",
+                        "primary-fixed-dim": "#ffb598",
+                        "tertiary-container": "#009fd9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#4e453b",
+                        "outline": "#8c7167",
+                        "surface-variant": "#f6ddd5",
+                        "surface-tint": "#a53c00",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#e0c0b3",
+                        "surface-container-low": "#fff1ec",
+                        "on-tertiary-container": "#003146",
+                        "secondary-fixed": "#eee0d2",
+                        "inverse-primary": "#ffb598",
+                        "on-surface": "#251914",
+                        "on-background": "#251914",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff8f6",
+                        "dark-black": "#1E1E1E",
+                        "status-green": "#10B981",
+                        "inverse-surface": "#3c2d28",
+                        "tertiary-fixed": "#c5e7ff",
+                        "on-error": "#ffffff",
+                        "status-brown": "#78350F",
+                        "on-secondary-fixed": "#211a12",
+                        "tertiary": "#00658c",
+                        "secondary": "#665d52",
+                        "surface-dim": "#edd5cd",
+                        "on-secondary-container": "#6d6358"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "1rem",
+                        "margin-desktop": "2.5rem",
+                        "gutter": "1rem",
+                        "stack-sm": "0.5rem",
+                        "margin-mobile": "1rem",
+                        "stack-lg": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "hero-mobile": ["Anton", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "section-title-mobile": ["Be Vietnam Pro", "sans-serif"],
+                        "label-price": ["Inter", "sans-serif"],
+                        "card-title": ["Be Vietnam Pro", "sans-serif"],
+                        "body-lg": ["Be Vietnam Pro", "sans-serif"],
+                        "section-title": ["Be Vietnam Pro", "sans-serif"],
+                        "hero": ["Anton", "sans-serif"],
+                        "body-md": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "hero-mobile": ["40px", {"lineHeight": "44px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "section-title-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "800"}],
+                        "label-price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "card-title": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "section-title": ["32px", {"lineHeight": "40px", "fontWeight": "800"}],
+                        "hero": ["48px", {"lineHeight": "52px", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-dark-black text-on-surface min-h-screen flex items-center justify-center transition-colors duration-300">
+
+    <div id="app-container" class="relative max-w-md w-full min-h-screen md:min-h-[850px] md:max-h-[900px] md:rounded-[40px] md:shadow-[0_25px_60px_-15px_rgba(165,60,0,0.25)] bg-surface dark:bg-inverse-surface overflow-hidden flex flex-col md:border-8 md:border-dark-black dark:md:border-gray-800 transition-all duration-300">
+        
+        <div class="hidden md:flex justify-between items-center px-6 py-2 bg-surface-container-low dark:bg-surface-dim text-on-surface-variant font-label-sm text-[11px] select-none border-b border-outline-variant/10 shrink-0">
+            <span class="font-semibold" id="mock-time">12:00</span>
+            <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[12px] font-bold">signal_cellular_4_bar</span>
+                <span class="material-symbols-outlined text-[12px] font-bold">wifi</span>
+                <span class="material-symbols-outlined text-[14px]">battery_5_bar</span>
+            </div>
+        </div>
+
+        <div id="header-root" class="shrink-0"></div>
+        <div id="drawer-root"></div>
+
+        <main id="main-root" class="flex-1 overflow-y-auto pb-24 pt-14 px-margin-mobile transition-all duration-300">
+        </main>
+
+        <div id="footer-root" class="shrink-0"></div>
+
+        <div id="toast-container" class="absolute bottom-20 left-1/2 -translate-x-1/2 w-[90%] max-w-[340px] z-[100] flex flex-col gap-2 pointer-events-none"></div>
+        <canvas id="confetti-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[99]"></canvas>
+    </div>
+
+    <script src="js/app.js"></script>
+
+    <script>
+        function updateMockClock() {
+            const timeSpan = document.getElementById('mock-time');
+            if (timeSpan) {
+                const now = new Date();
+                const hh = String(now.getHours()).padStart(2, '0');
+                const mm = String(now.getMinutes()).padStart(2, '0');
+                timeSpan.textContent = `${hh}:${mm}`;
+            }
+        }
+        setInterval(updateMockClock, 1000);
+        updateMockClock();
+    </script>
+</body>
+</html>

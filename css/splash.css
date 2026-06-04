@@ -1,0 +1,101 @@
+/* Splash & onboarding — scoped inside #splash-phone frame */
+
+.splash-page {
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#splash-phone {
+    isolation: isolate;
+}
+
+#splash-stage {
+    position: relative;
+}
+
+@keyframes splash-float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(4deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.animate-float {
+    animation: splash-float 4s ease-in-out infinite;
+}
+
+.splash-reveal {
+    animation: splash-reveal-content 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.splash-dots-delay {
+    animation-delay: 0.4s;
+}
+
+.splash-dot-2 {
+    animation-delay: 0.2s;
+}
+
+.splash-dot-3 {
+    animation-delay: 0.4s;
+}
+
+.splash-title-shadow {
+    text-shadow: rgba(0, 0, 0, 0.1) 2px 4px 0;
+}
+
+@keyframes splash-reveal-content {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+#splash-container {
+    opacity: 0;
+    transform: translateY(-16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+#onboarding-layer {
+    transform: translateY(100%);
+    transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1);
+    will-change: transform;
+}
+
+#onboarding-layer.is-visible {
+    transform: translateY(0);
+}
+
+#splash-stage:has(#onboarding-layer.is-visible) #splash-container {
+    visibility: hidden;
+}
+
+.splash-page .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+
+/* Ripple inside phone frame only */
+.splash-ripple {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+    z-index: 40;
+    transform: scale(1);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.pb-safe {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 767px) {
+    #splash-phone {
+        min-height: 100dvh;
+        max-height: 100dvh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+    }
+}
