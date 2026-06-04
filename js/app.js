@@ -1430,8 +1430,8 @@ function renderProfile(state) {
     ];
 
     const addresses = [
-        { label: "Ký túc xá Khu B ĐHQG", desc: "Tòa B3, Phòng 502, Phường Linh Trung, Thủ Đức", isDefault: true },
-        { label: "Thư viện Trung tâm ĐHQG", desc: "Khu bàn tự học lầu 2, Kế cửa sổ hướng hồ đá", isDefault: false }
+        { label: "Ký túc xá Khu A IUH", desc: "Tòa B3, Phòng 502, Phường Linh Trung, Thủ Đức", isDefault: true },
+        { label: "Ký túc xá Khu B IUH", desc: "Khu bàn tự học lầu 2, Kế cửa sổ hướng hồ đá", isDefault: false }
     ];
 
     return `
