@@ -2,6 +2,9 @@
 
 const ONBOARDED_KEY = 'svq_onboarded';
 
+// Initialize Supabase Client
+const supabaseClient = supabase.createClient(window.CONFIG.SUPABASE_URL, window.CONFIG.SUPABASE_ANON_KEY);
+
 function enterApp(hash = '#/home') {
     try {
         localStorage.setItem(ONBOARDED_KEY, '1');
@@ -68,25 +71,33 @@ function runSplashSequence() {
     splash.addEventListener('click', transitionToOnboarding);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // For prototype testing, clear onboarded state and comment out automatic app entry
+document.addEventListener('DOMContentLoaded', async () => {
+    // Check if user is logged in via Supabase
+    let loggedIn = false;
     try {
-        localStorage.removeItem(ONBOARDED_KEY);
-    } catch (e) {}
-
-    /*
-    try {
-        if (localStorage.getItem(ONBOARDED_KEY) === '1') {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('splash') !== '1') {
-                enterApp('#/home');
-                return;
-            }
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session && session.user) {
+            loggedIn = true;
         }
     } catch (e) {
-        // continue with splash
+        console.warn("Could not check Supabase auth status", e);
     }
-    */
+
+    if (loggedIn) {
+        enterApp('#/home');
+        return;
+    }
+
+    // For prototype testing, clear onboarded state if splash URL parameter is present
+    try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('splash') === '1') {
+            localStorage.removeItem(ONBOARDED_KEY);
+        } else if (localStorage.getItem(ONBOARDED_KEY) === '1') {
+            enterApp('#/home');
+            return;
+        }
+    } catch (e) {}
 
     setupRippleFeedback();
     runSplashSequence();

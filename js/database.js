@@ -57,7 +57,7 @@ export const initialVouchers = [
     }
 ];
 
-export const combos = [
+export let combos = [
     {
         id: "combo-1",
         name: "Combo Kịp Tiết",
@@ -108,7 +108,7 @@ export const combos = [
     }
 ];
 
-export const singleItems = [
+export let singleItems = [
     {
         id: "food-1",
         name: "Bún Thịt Nướng Đầy Đủ",

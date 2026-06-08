@@ -141,6 +141,15 @@
         </div>
     </div>
 
+    <!-- Supabase integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script>
+        if (!window.CONFIG) {
+            console.error("Missing config.js! Please copy js/config.js.example to js/config.js and insert your Supabase credentials.");
+            window.CONFIG = { SUPABASE_URL: "", SUPABASE_ANON_KEY: "" };
+        }
+    </script>
     <script src="js/splash.js"></script>
     <script>
         function updateMockClock() {

@@ -17,6 +17,9 @@
     "preview": "npm run dev",
     "validate": "node scripts/validate.js"
   },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
   "engines": {
     "node": ">=18"
   }
