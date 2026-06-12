@@ -2,7 +2,44 @@
 // This file merges database, utilities, components, and routing to bypass CORS issues on local file:/// protocols.
 
 // Initialize Supabase Client
-const supabaseClient = supabase.createClient(window.CONFIG.SUPABASE_URL, window.CONFIG.SUPABASE_ANON_KEY);
+let supabaseClient;
+try {
+    if (!window.CONFIG || !window.CONFIG.SUPABASE_URL || !window.CONFIG.SUPABASE_ANON_KEY) {
+        throw new Error("Missing Supabase credentials in config.js");
+    }
+    supabaseClient = supabase.createClient(window.CONFIG.SUPABASE_URL, window.CONFIG.SUPABASE_ANON_KEY);
+} catch (e) {
+    console.error("Supabase client initialization failed:", e);
+    // Graceful proxy-based fallback to support chaining and prevent crashes
+    const makeDummySupabase = (errorMsg) => {
+        const dummyPromise = Promise.resolve({ data: null, error: new Error(errorMsg) });
+        const handler = {
+            get(target, prop) {
+                if (prop === 'then') {
+                    return (onFulfilled) => dummyPromise.then(onFulfilled);
+                }
+                if (prop === 'auth') {
+                    return {
+                        getSession: async () => ({ data: { session: null }, error: new Error(errorMsg) }),
+                        signInWithPassword: async () => ({ data: { user: null, session: null }, error: new Error(errorMsg) }),
+                        signUp: async () => ({ data: { user: null, session: null }, error: new Error(errorMsg) }),
+                        signOut: async () => ({ error: new Error(errorMsg) }),
+                        onAuthStateChange: (cb) => {
+                            setTimeout(() => cb('SIGNED_OUT', null), 0);
+                            return { data: { subscription: { unsubscribe: () => {} } } };
+                        }
+                    };
+                }
+                return () => new Proxy(() => {}, handler);
+            },
+            apply() {
+                return new Proxy(() => {}, handler);
+            }
+        };
+        return new Proxy(() => {}, handler);
+    };
+    supabaseClient = makeDummySupabase(e.message);
+}
 
 // ==========================================
 // 1. DATABASE STATE & SEED DATA

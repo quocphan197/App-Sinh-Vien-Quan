@@ -15,6 +15,7 @@
     "dev": "npx --yes serve . -l 3000",
     "start": "npm run dev",
     "preview": "npm run dev",
+    "build": "node scripts/build-config.js",
     "validate": "node scripts/validate.js"
   },
   "dependencies": {

@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "name": "sinh-vien-quan",
-  "buildCommand": "",
+  "buildCommand": "node scripts/build-config.js",
   "outputDirectory": ".",
   "installCommand": "",
   "framework": null,

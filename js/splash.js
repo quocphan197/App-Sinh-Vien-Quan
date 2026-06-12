@@ -3,7 +3,22 @@
 const ONBOARDED_KEY = 'svq_onboarded';
 
 // Initialize Supabase Client
-const supabaseClient = supabase.createClient(window.CONFIG.SUPABASE_URL, window.CONFIG.SUPABASE_ANON_KEY);
+let supabaseClient;
+try {
+    if (!window.CONFIG || !window.CONFIG.SUPABASE_URL || !window.CONFIG.SUPABASE_ANON_KEY) {
+        throw new Error("Missing Supabase credentials in config.js");
+    }
+    supabaseClient = supabase.createClient(window.CONFIG.SUPABASE_URL, window.CONFIG.SUPABASE_ANON_KEY);
+} catch (e) {
+    console.error("Supabase client initialization failed:", e);
+    // Graceful fallback for offline/prototype mode
+    supabaseClient = {
+        auth: {
+            getSession: async () => ({ data: { session: null }, error: e }),
+            onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
+        }
+    };
+}
 
 function enterApp(hash = '#/home') {
     try {
