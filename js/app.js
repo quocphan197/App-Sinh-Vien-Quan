@@ -466,8 +466,41 @@ async function fetchProductsFromSupabase() {
         }
         
         if (data && data.length > 0) {
-            combos = data.filter(p => p.is_combo);
-            singleItems = data.filter(p => !p.is_combo);
+            // Keep copies of the original hardcoded items for fallback properties (like dishName, image, category, etc.)
+            const defaultCombos = [...combos];
+            const defaultSingleItems = [...singleItems];
+
+            const mapped = data.map(p => {
+                const defaultProd = p.is_combo 
+                    ? defaultCombos.find(c => c.id === p.id)
+                    : defaultSingleItems.find(i => i.id === p.id);
+
+                return {
+                    id: p.id,
+                    name: p.name,
+                    description: p.description || '',
+                    // Combos require dishName and reason
+                    dishName: p.is_combo 
+                        ? (defaultProd?.dishName || p.name) 
+                        : (p.description || ''),
+                    reason: p.is_combo 
+                        ? (p.description || defaultProd?.reason || '') 
+                        : (p.description || ''),
+                    price: Number(p.price),
+                    originalPrice: p.original_price ? Number(p.original_price) : null,
+                    image: p.image_url || defaultProd?.image || '',
+                    isCombo: p.is_combo,
+                    time: p.prep_time || defaultProd?.time || '5 phút',
+                    status: p.status_text || defaultProd?.status || 'Sẵn sàng ngay',
+                    tags: p.tags || defaultProd?.tags || [],
+                    category: p.category_id || defaultProd?.category || 'food',
+                    stock_quantity: p.stock_quantity
+                };
+            });
+
+            combos = mapped.filter(p => p.isCombo);
+            singleItems = mapped.filter(p => !p.isCombo);
+            
             if (combos.length > 0) {
                 state.selectedCombo = combos[0];
             }
